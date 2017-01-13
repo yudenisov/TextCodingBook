@@ -34,7 +34,7 @@ Changes
 Installation
 --------------
 
-    1. Скачайте программу Treepad Lite (Freeware) по ссылке: [Treepad Lite]
+    1. Скачайте программу Treepad Lite (Freeware) по ссылке: http://www.treepad.com/download/tplitewin.html
     2. Установите программу Treepad Lite;
     3. Скачайте файлы с книгой и распакуйте их в любом каталоге неа жёстком диске.
     4. Откройте файл для просмотра двойным щелчком на его имени.
