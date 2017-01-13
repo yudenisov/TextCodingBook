@@ -1,0 +1,212 @@
+Корневой узел всех объектов DOM для браузеров -- объект document. Он не имеет родителя, и содерожит один потомок -- <html>
+
+Соответственно объект html содержит родителем объект document и имеет два потомка: объект head и объект body.
+
+Ссылка на родительский объект (узел) находится в свойстве parentNode текущего узла, а все дочерние его узлы -- в массиве childNodes. Количество дочерних объектов у текущего узлда можно определить с помощью функции childNodes.length.
+
+Первый дочерний узел обозначается как node.childeNodes[0], или node.firstChild, а последний -- node.childNodes[node.childNodes.length - 1], или node.lastChild.
+
+С помощью этих методов можно передвигаться по иерархии деревьев последовательно или в цикле.
+
+Для быстрого перехода к узлу, имеющий тег id (в терминологии css), необходимо использовать функцию объекта document.getElementById. В DOM предполагается, что такой элемент или не существует (тогда функция возвращает undefined), либо только один такой элемент. Использовать эту функцию лучше всего для динамически сгенерированных страниц средствами Perl, PHP и ASP.Net.
+
+Также может оказаться полезной функцией document.getElementsByTagName, которая возвращает коллекцию узлов в документе, именованным общим тегом. Например, выражение 
+
+var allParagraphs = document.getElementsByTagName('p');
+
+запишет в переменную allParagraphs все теги с именем <p> (то есть все простые параграфы).
+
+Также возможна комбинация этих тегов. Например, выражение:
+
+document.getElementsByTagName('p').getElementById('myId')
+
+вернёт ссылку на единственный параграф, отмеченный идентификатором myId. Это соответствует записи в css p#myId.
+
+Функция node.nextSibling возвращает следующего "брата" данного узла;
+
+Функция document.createElement -- создаёт HTML тег, но не помещает его в текст;
+
+Функция document.createTextNode -- заполняет текстовое содержимое html-документа, которое также не отображается в документе;
+
+Добавление элемента в документ можно сделать одним из двух способов: используя appendChild, или используя insertBefore. Функция appendChild добавляет наш элемент в конце существующего элемента (именно поэтому она называет append). Если элемент нужно добавить в середине существующего элемента, нам нужно использовать insertBefore, например:
+
+links[i].parentNode.insertBefore(span, links[i].nextSibling);
+
+К типичным свойствам DOM относятся следующие:
+
+x.innerHTML
+- внутреннее текстовое значение HTML элемента x;
+x.nodeName
+- имя x;
+x.nodeValue
+- значение x;
+x.parentNode
+- родительский узел для x;
+x.childNodes
+- дочерний узел для x;
+x.attributes
+- узлы атрибутов x.
+
+Узловой объект, соответствующий HTML элементу поддерживает следующие методы:
+
+x.getElementById(id)
+- получить элемент с указанным id;
+x.getElementsByTagName(name)
+- получить все элементы с указанным именем тэга (name);
+x.appendChild(node)
+- вставить дочерний узел для x;
+x.removeChild(node)
+- удалить дочерний узел для x.
+
+В рамках DOM возможны 3 способа доступа к узлам:
+
+С помощью метода getElementById(ID). 
+При этом возвращается элемент с указанным ID
+.
+С помощью метода getElementsByTagName(name).
+При этом возвращаются все узлы с указанным именем тэга (в виде индексированного списка). Путем перемещения по дереву с использованием отношений между узлами.
+Первый элемент в списке имеет нулевой индекс.
+Для определения длины списка узлов используется свойство length .
+
+x = document.getElementsByTagName("p");
+for (i = 0; i < x.length; i++) {
+	document.write(x[i].innerHTML);
+	document.write("<br/>"); 
+}
+В данном примере внутрь HTML документа вставляется в виде списка текстовое содержимое всех элементов соответствующих тэгу <p> .
+
+Для навигации по дереву в ближайших окрестностях текущего узла можно использовать следующие свойства:
+
+parentNode;
+firstChild;
+lastChild.
+
+Для непосредственного доступа к тэгам можно использовать 2 специальных свойства:
+
+document.documentElement
+- для доступа к корневому узлу документа;
+document.body
+- для доступа к тэгу <body>.
+
+
+Свойства узлов
+--------------
+
+В HTML DOM каждый узел является объектом, который может иметь методы (функции) и свойства. Наиболее важными являются следующие свойства:
+
+nodeName;
+nodeValue;
+nodeType
+.
+Свойство nodeName указывает на имя узла. Это свойство имеет следующие
+особенности:
+
+Свойство nodeName предназначено только для чтения;
+Свойство nodeName узла элемента точно соответствует имени тэга;
+Свойство nodeName узла атрибута соответствует имени атрибута;
+Свойство nodeName текстового узла всегда равно #text
+Свойство nodeName узла документа всегда равно #document
+Замечание: nodeName всегда содержит имя тэга HTML элемента в верхнем регистре.
+
+Свойство nodeValue указывает на значение узла. Это свойство имеет следующие особенности:
+
+Свойство nodeValue узла элемента не определено;
+Свойство nodeValue текстового узла указывает на сам текст;
+Свойство nodeValue узла атрибута указывает на значение атрибута.
+
+Свойство nodeType возвращает тип узла. Это свойство предназначено только для чтения:
+
+Наиболее важными типами узлов являются следующие:
+
+Тип элемента Тип узла
+Element 1
+Attribute 2
+Text 3
+Comment 8
+Document 9
+
+Метод узла document.write
+-- Записывает указанную строку в конец документа "как есть", безо всяких преобразований в DOM
+
+Скрытие и отображение
+---------------------
+
+Представьте параграф следующего вида:
+
+<p id="mypara" style="display: none">I am a paragraph</p>
+
+Этот параграф будет невидим на странице. JavaScript позволяет динамически добавлять стиль display: none для элемента и удалять его.
+
+JavaScript предоставляет возможность получить ссылку на элемент HTML. Например, var el = document.getElementById(" nav "); выдает ссылку на элемент с id=" nav ". Когда ссылка на элемент получена, можно с помощью атрибута style изменить примененный к нему код CSS. Например, параграф "mypara" выше в настоящий момент скрыт (в нем задано display: none ). Чтобы показать его, задайте атрибут стиля display как block :
+
+var el = document.getElementById('mypara'); el.style.display = 'block
+
+Вот пример множества вкладок:
+
+<ol class="tablinks">
+<li><a href="#tab1">Tab 1</a></li>
+<li><a href="#tab2">Tab 2</a></li>
+<li><a href="#tab3">Tab 3</a></li>
+</ol>
+<div class="tab" id="tab1">This is tab 1</div>
+<div class="tab" id="tab2">This is tab 2</div>
+<div class="tab" id="tab3">This is tab 3</div>
+
+<style type="text/css"> 
+ol.tablinks { margin: 0; padding: 0; }
+ol.tablinks li { float: left; border: 2px solid red; border-width: 2px 2px 0 2px; background: #eee; list-style: none; padding: 5px; margin: 0;} 
+ol.tablinks li a { text-decoration: none; color: black; } 
+div.tab {clear: left; border: 2px solid red; border-width: 1px 2px 2px 2px; }
+</style>
+<script type="text/javascript"> 
+var tabify = { hasClass:
+function(el,c) { return el.className.match(new RegExp('(\\s|^)'+c+'(\\s|$)')); }, 
+addClass: function(el,c) { if(!tabify.hasClass(el,c)) el.className += " " + c; }, 
+removeClass: function(el,c) { if (tabify.hasClass(el,c)) {el.className=el.className.replace(new RegExp('(\\s|^)'+c+'(\\s|$)'),'
+'); } },
+hideAllTabs: function(ol) { 
+var links = ol.getElementsByTagName("a"); 
+for (var i=0; i<links.length; i++) {
+tabify.setTabFromLink(links[i], "none"); 
+} 
+},
+setTabFromLink: function(link, style) { 
+var dest = link.href.match(/#(.*)$/)[1];
+document.getElementById(dest).style.display = style;
+if (style == "none") { tabify.removeClass(link, "active"); } 
+else {
+tabify.addClass(link, "active"); } 
+}, 
+addEvent: function(obj, type, fn)
+{ 
+if ( obj.attachEvent ) { obj['e'+type+fn] = fn; 
+obj[type+fn] = function(){
+obj['e'+type+fn]( window.event );};
+obj.attachEvent('on'+type, obj[type+fn] ); } 
+else {
+obj.addEventListener( type, fn, false ); 
+} 
+}, 
+init: function() { 
+var ols = document.getElementsByTagName("ol"); 
+for (var i=0; i<ols.length; i++){ 
+var ol = ols[i]; 
+if (!/(^|\s)tablinks(\s|$)/.test(ol.className)) {
+continue; } 
+tabify.addEvent(ol, "click", function(e) { 
+var target = window.event ? window.event.srcElement : e.target; 
+if(target.nodeName.toLowerCase() === "a") {
+tabify.hideAllTabs(e.target.parentNode.parentNode);
+
+tabify.setTabFromLink(e.target, "block"); 
+if (e) e.preventDefault(); 
+if (window.event) window.event.returnValue = false; return false; 
+} 
+}, true); 
+tabify.hideAllTabs(ol);
+tabify.setTabFromLink(ol.getElementsByTagName("a")[0], "block"); 
+} 
+} 
+};
+tabify.addEvent(window, "load", tabify.init); 
+</script>
