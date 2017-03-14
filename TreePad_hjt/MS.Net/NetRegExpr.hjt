@@ -256,7 +256,6 @@ Zl
 :Id 
 Обозначает идеографические знаки (Хан и Кандзи). 
 
-
 <end node> 5P9i0s8y19Z
 dt=Text
 <node>
@@ -268,7 +267,6 @@ dt=Text
 Symbols
 1
 В регулярных выражениях используються собственные подстановочные знаки. Все знаки услово можно разделить на знаки, присутствующие только в образце, и знаки, используемые как в образце, так и в заменяющей строке. Паоследние называются escape-последовательностями. Список всех специальных символов регулярных выражение приведён ниже.
-
 
 <end node> 5P9i0s8y19Z
 dt=Text
@@ -372,7 +370,6 @@ dt=Text
 Категорию Юникода, к которой принадлежит знак, можно найти с помощью метода GetUnicodeCategory.
 
 Дополнительные сведения о категориях знаков Юникода см. в документе Unicode Data File Format, доступном на веб-узле Технической комиссии Юникода (UTC): http://www.unicode.org/Public/UNIDATA/UnicodeData.html.
-
 
 <end node> 5P9i0s8y19Z
 dt=Text
@@ -1188,5 +1185,1269 @@ ToString
 
 (Shared в Visual Basic)Unescape 
 Переключает обратно символы переключения режима во входной строке. 
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Constructors
+2
+Перваый вариант -- Инициализирует и компилирует экземпляр класса Regex для указанного регулярного выражения.
+
+Параметры
+	pattern -- Образец регулярного выражения для сопоставления. 
+Исключения
+Тип исключения 
+Условие 
+ArgumentException 
+Ошибка анализа регулярного выражения. 
+
+Примечания
+	Объект Regex является постоянным, это означает, что его можно использовать только для параметров сопоставления, определенных при его создании. Однако его допускается использовать неограниченное число раз без перекомпиляции.
+
+Примеры описания:
+
+[VB]
+Public Sub New( _
+   ByVal pattern As String _
+)
+
+[VC#]
+public Regex(
+   string pattern
+);
+
+[VC++]
+public: Regex(
+   String* pattern
+);
+
+[JScript]
+public function Regex(
+   pattern : String
+);
+
+Второй Вариант -- Инициализирует и компилирует экземпляр класса Regex для указанного регулярного выражения с параметрами, изменяющими образец.
+
+Параметры
+	pattern -- Образец регулярного выражения для сопоставления. 
+	options -- Поразрядная комбинация OR значений перечисления RegexOption. 
+
+Исключения:
+Тип исключения 
+Условие 
+ArgumentException 
+Ошибка анализа регулярного выражения. 
+
+Примечания
+	Объект Regex является постоянным, это означает, что его можно использовать только для параметров сопоставления, определенных при его создании. Однако его допускается использовать неограниченное число раз без перекомпиляции.
+
+Примеры определения:
+
+[VB]
+Public Sub New( _
+   ByVal pattern As String, _
+   ByVal options As RegexOptions _
+)
+
+[VC#]
+public Regex(
+   string pattern,
+   RegexOptions options
+);
+
+[VC++]
+public: Regex(
+   String* pattern,
+   RegexOptions options
+);
+
+[JScript]
+public function Regex(
+   pattern : String,
+   options : RegexOptions
+);
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Options
+2
+Возвращает параметры, переданные в конструктор Regex.
+
+Значение свойства
+Параметр options, переданный в конструктор Regex.
+
+Примеры определения:
+
+[VB]
+Public ReadOnly Property Options As RegexOptions
+
+[VC#]
+public RegexOptions Options {get;}
+
+[VC++]
+public: __property RegexOptions get_Options();
+
+[JScript]
+public function get Options() : RegexOptions;
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+RightToLeft 
+2
+Получает значение показывающее, выполняет ли регулярное выражение поиск справа налево.
+
+Значение свойства
+true, если регулярное выражение выполняет поиск справа налево; в противном случае — false.
+
+Примечания
+RightToLeft является true, если экземпляр Regex был создан с параметром RightToLeft.
+
+Примеры описания:
+
+[VB]
+Public ReadOnly Property RightToLeft As Boolean
+
+[VC#]
+public bool RightToLeft {get;}
+
+[VC++]
+public: __property bool get_RightToLeft();
+
+[JScript]
+public function get RightToLeft() : Boolean;
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Escape
+2
+Переключает минимальный набор метасимволов (\, *, +, ?, |, {, [, (,), ^, $, ., # и пробел), замещая их кодами переключения режима.
+
+Параметры
+	str -- Входная строка, содержащая текст для преобразования. 
+Возвращаемое значение
+	Строка символов с метасимволами, преобразованными с помощью режима переключения.
+
+Примечания
+	Escape преобразует строку таким образом, что ее можно безопасно использовать в качестве константы в регулярном выражении. (Символы знака (#) и пробела необходимо переключить так, чтобы строку можно было безопасно применять в выражении, анализируемом при включенном параметре IgnorePatternWhitespace. Если будущие функции регулярных выражений .NET добавят дополнительные метасимволы, Escape также преобразует эти символы с помощью переключения режима.)
+
+Примеры описания:
+
+[VB]
+Public Shared Function Escape( _
+   ByVal str As String _
+) As String
+
+[VC#]
+public static string Escape(
+   string str
+);
+
+[VC++]
+public: static String* Escape(
+   String* str
+);
+
+[JScript]
+public static function Escape(
+   str : String
+) : String;
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+GetGroupNames 
+2
+Возвращает массив имен групп захвата для регулярного выражения.
+
+Возвращаемое значение
+	Массив строк имен групп.
+
+Примечания
+	Коллекция имен групп содержит набор строк, применяемых для присвоения имен группам захвата в выражении. Даже если группы захвата не явно названы, им автоматически присваиваются числовые имена (1, 2, 3 и так далее). Поэтому данную коллекцию можно использовать для определения количества групп.
+
+Требования
+
+[VB]
+Public Function GetGroupNames() As String()
+
+[VC#]
+public string[] GetGroupNames();
+
+[VC++]
+public: String* GetGroupNames()  __gc[];
+
+[JScript]
+public function GetGroupNames() : String[];
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+GetGroupNumbers 
+2
+Возвращает массив номеров групп захвата, соответствующих именам групп в массиве.
+
+Возвращаемое значение
+	Целочисленный массив номеров групп.
+
+Примечания
+Имеется возможность получить более быстрый доступ, ссылаясь на группу по ее номеру, а не по имени строки.
+
+Примеры описания:
+
+[VB]
+Public Function GetGroupNumbers() As Integer()
+
+[VC#]
+public int[] GetGroupNumbers();
+
+[VC++]
+public: int GetGroupNumbers()  __gc[];
+
+[JScript]
+public function GetGroupNumbers() : int[];
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+GroupNameFromNumber 
+2
+Получает имя группы, соответствующее указанному номеру группы.
+
+Параметры
+	i  -- Номер группы для преобразования в соответствующее имя группы. 
+Возвращаемое значение
+	Строка, содержащая имя группы, связанное с указанным номером группы.
+
+Примеры описания:
+
+[VB]
+Public Function GroupNameFromNumber( _
+   ByVal i As Integer _
+) As String
+
+[VC#]
+public string GroupNameFromNumber(
+   int i
+);
+
+[VC++]
+public: String* GroupNameFromNumber(
+   int i
+);
+
+[JScript]
+public function GroupNameFromNumber(
+   i : int
+) : String;
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+GroupNumberFromName
+2
+Возвращает номер группы, соответствующий указанному имени группы.
+
+Параметры
+	name -- Имя группы для преобразования в соответствующий номер группы. 
+Возвращаемое значение
+	Номер группы, соответствующий указанному имени группы.
+
+Примеры описания:
+
+[VB]
+Public Function GroupNumberFromName( _
+   ByVal name As String _
+) As Integer
+
+[VC#]
+public int GroupNumberFromName(
+   string name
+);
+
+[VC++]
+public: int GroupNumberFromName(
+   String* name
+);
+
+[JScript]
+public function GroupNumberFromName(
+   name : String
+) : int;
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+IsMatch 
+2
+Данный метод имеет несколько форм вызова:
+
+Первый вариант: 
+Показывает, обнаружен ли регулярным выражением, указанным в конструкторе Regex, подобный элемент в выходной строке.
+
+[VB]
+Overloads Public Function IsMatch( _
+   ByVal input As String _
+) As Boolean
+
+[VC#]
+public bool IsMatch(
+   string input
+);
+
+[VC++]
+public: bool IsMatch(
+   String* input
+);
+
+[JScript]
+public function IsMatch(
+   input : String
+) : Boolean;
+
+Второй вариант:
+Показывает, обнаружен ли регулярным выражением, указанным в конструкторе Regex, подобный элемент в выходной строке, начиная от указанной начальной позиции в строке.
+
+[VB]
+Overloads Public Function IsMatch( _
+   ByVal input As String, _
+   ByVal startat As Integer _
+) As Boolean
+
+[VC#]
+public bool IsMatch(
+   string input,
+   int startat
+);
+
+[VC++]
+public: bool IsMatch(
+   String* input,
+   int startat
+);
+
+[JScript]
+public function IsMatch(
+   input : String,
+   startat : int
+) : Boolean;
+
+Третий вариант:
+Показывает, находит ли регулярное выражение подобный элемент в выходной строке, используя регулярное выражение, указанное в параметре pattern.
+
+[VB]
+Overloads Public Shared Function IsMatch( _
+   ByVal input As String, _
+   ByVal pattern As String _
+) As Boolean
+
+[VC#]
+public static bool IsMatch(
+   string input,
+   string pattern
+);
+
+[VC++]
+public: static bool IsMatch(
+   String* input,
+   String* pattern
+);
+
+[JScript]
+public static function IsMatch(
+   input : String,
+   pattern : String
+) : Boolean;
+
+Четвёртый вариант:
+Показывает, находит ли регулярное выражение подобный элемент в выходной строке, используя регулярное выражение, заданное параметром pattern, и параметры сопоставления, заданные параметром options.
+
+[VB]
+Overloads Public Shared Function IsMatch( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal options As RegexOptions _
+) As Boolean
+
+[VC#]
+public static bool IsMatch(
+   string input,
+   string pattern,
+   RegexOptions options
+);
+
+[VC++]
+public: static bool IsMatch(
+   String* input,
+   String* pattern,
+   RegexOptions options
+);
+
+[JScript]
+public static function IsMatch(
+   input : String,
+   pattern : String,
+   options : RegexOptions
+) : Boolean;
+
+Параметры
+	input -- Строка, вхождение которой требуется найти. 
+	startat -- Позиция символа, откуда следует начать поиск. 
+	pattern -- Образец регулярного выражения для сопоставления. 
+	options -- Поразрядная комбинация OR значений перечисления RegexOption. 
+
+Возвращаемое значение для всех вариантов синтаксиса:
+	true, если регулярное выражение обнаруживает подобный элемент; в противном случае — false.
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Match
+2
+Просматривает входную строку в поисках вхождений регулярного выражения и возвращает точный результат в виде отдельного объекта Match.
+
+Список перегрузки
+Данная функция поддерживает пять вариантов синтаксиса:
+
+Первый вариант.
+Просматривает указанную входную строку в поиске вхождений регулярного выражения, указанного в конструкторе Regex.
+
+[VB]
+Overloads Public Function Match( _
+   ByVal input As String _
+) As Match
+
+[VC#]
+public Match Match(
+   string input
+);
+
+[VC++]
+public: Match* Match(
+   String* input
+);
+
+[JScript]
+public function Match(
+   input : String
+) : Match;
+
+Второй вариант:
+Просматривает входную строку в поисках вхождений регулярного выражения с указанной начальной позицией входной строки.
+
+[VB]
+Overloads Public Function Match( _
+   ByVal input As String, _
+   ByVal startat As Integer _
+) As Match
+
+[VC#]
+public Match Match(
+   string input,
+   int startat
+);
+
+[VC++]
+public: Match* Match(
+   String* input,
+   int startat
+);
+
+[JScript]
+public function Match(
+   input : String,
+   startat : int
+) : Match;
+
+Третий вариант:
+Просматривает указанную входную строку в поиске вхождений регулярного выражения, поставляемого в параметре pattern.
+
+[VB]
+Overloads Public Shared Function Match( _
+   ByVal input As String, _
+   ByVal pattern As String _
+) As Match
+
+[VC#]
+public static Match Match(
+   string input,
+   string pattern
+);
+
+[VC++]
+public: static Match* Match(
+   String* input,
+   String* pattern
+);
+
+[JScript]
+public static function Match(
+   input : String,
+   pattern : String
+) : Match;
+
+Четвёртый вариант:
+Просматривает входную строку в поисках вхождений регулярного выражения с указанной начальной позицией входной строки и длиной входной строки.
+
+[VB]
+Overloads Public Function Match( _
+   ByVal input As String, _
+   ByVal beginning As Integer, _
+   ByVal length As Integer _
+) As Match
+
+[VC#]
+public Match Match(
+   string input,
+   int beginning,
+   int length
+);
+
+[VC++]
+public: Match* Match(
+   String* input,
+   int beginning,
+   int length
+);
+
+[JScript]
+public function Match(
+   input : String,
+   beginning : int,
+   length : int
+) : Match;
+
+Пятый вариант:
+Просматривает входную строку в поисках вхождений регулярного выражения, поставляемого в параметре pattern с опциями сопоставления, поставляемыми в параметре options.
+
+[VB]
+Overloads Public Shared Function Match( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal options As RegexOptions _
+) As Match
+
+[VC#]
+public static Match Match(
+   string input,
+   string pattern,
+   RegexOptions options
+);
+
+[VC++]
+public: static Match* Match(
+   String* input,
+   String* pattern,
+   RegexOptions options
+);
+
+[JScript]
+public static function Match(
+   input : String,
+   pattern : String,
+   options : RegexOptions
+) : Match;
+
+Параметры
+	input -- Строка, вхождение которой требуется найти. 
+	startat -- Позиция символа, откуда следует начать поиск. 
+	pattern -- Образец регулярного выражения для сопоставления. 
+	beginning -- Позиция символа в входной строке, откуда следует начать поиск. 
+	length -- Число символов в подстроке, включенных в поиск. 
+	options -- Поразрядная комбинация OR значений перечисления RegexOption. 
+
+Возвращаемое значение
+	Объект Match регулярного выражения.
+
+Примечания
+	При желании можно ограничить сопоставление так, чтобы не было сканирования. Для этого прикрепите регулярное выражение к\G (слева для образца слева-направо или справа для образца справа-налево). Сопоставление будет ограничено и будет начинаться точно с startpos.
+
+	Если Regex является слева-направо (по умолчанию), сопоставление и просмотр происходят в правом направлении, начиная с символа в startat. Если Regex является справа-налево (созданный с активным параметром RightToLeft), сопоставление и просмотр происходят в обратном направлении и начинаются с символа в startat-1.
+
+	Статические методы Match эквивалентны созданию объекта Regex с указанным образцом и последующим вызовом метода экземпляра Match. Статические методы нужны для того, чтобы предоставить изолированное, отдельное использование регулярного выражения без явного создания объекта Regex.
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Matches
+2
+Просматривает входную строку в поисках всех вхождений регулярного выражения и возвращает все успешные сопоставления, как если бы Match был вызван несколько раз.
+
+Список перегрузки:
+	Данная функция доступна в четырёх вариантах синтаксиса, совпадающих с вариантами синтаксиса для метода isMatch
+
+Первый вариант:
+Просматривает указанную входную строку в поисках всех вхождений регулярного выражения.
+
+[VB]
+Overloads Public Function Matches( _
+   ByVal input As String _
+) As MatchCollection
+
+[VC#]
+public MatchCollection Matches(
+   string input
+);
+
+[VC++]
+public: MatchCollection* Matches(
+   String* input
+);
+
+[JScript]
+public function Matches(
+   input : String
+) : MatchCollection;
+
+Второй вариант:
+Просматривает указанную входную строку в поисках всех вхождений регулярного выражения, начиная с указанной начальной позиции в строке.
+
+[VB]
+Overloads Public Function Matches( _
+   ByVal input As String, _
+   ByVal startat As Integer _
+) As MatchCollection
+
+[VC#]
+public MatchCollection Matches(
+   string input,
+   int startat
+);
+
+[VC++]
+public: MatchCollection* Matches(
+   String* input,
+   int startat
+);
+
+[JScript]
+public function Matches(
+   input : String,
+   startat : int
+) : MatchCollection;
+
+Третий вариант:
+Просматривает указанную входную строку в поисках всех вхождений регулярного выражения, указанного в параметре pattern.
+
+[VB]
+Overloads Public Shared Function Matches( _
+   ByVal input As String, _
+   ByVal pattern As String _
+) As MatchCollection
+
+[VC#]
+public static MatchCollection Matches(
+   string input,
+   string pattern
+);
+
+[VC++]
+public: static MatchCollection* Matches(
+   String* input,
+   String* pattern
+);
+
+[JScript]
+public static function Matches(
+   input : String,
+   pattern : String
+) : MatchCollection;
+
+Четвёртый вариант:
+Просматривает входную строку в поисках всех вхождений регулярного выражения, поставляемого в параметре pattern с опциями сопоставления, поставляемыми в параметре options.
+
+[VB]
+Overloads Public Shared Function Matches( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal options As RegexOptions _
+) As MatchCollection
+
+[VC#]
+public static MatchCollection Matches(
+   string input,
+   string pattern,
+   RegexOptions options
+);
+
+[VC++]
+public: static MatchCollection* Matches(
+   String* input,
+   String* pattern,
+   RegexOptions options
+);
+
+[JScript]
+public static function Matches(
+   input : String,
+   pattern : String,
+   options : RegexOptions
+) : MatchCollection;
+
+Параметры
+	input -- Строка, вхождение которой требуется найти. 
+	startat -- Позиция символа, откуда следует начать поиск. 
+	pattern -- Образец регулярного выражения для сопоставления. 
+	options -- Поразрядная комбинация OR значений перечисления RegexOption. 
+
+Возвращаемое значение
+	MatchCollection объектов Match, найденных при поиске.
+
+Примечания
+	Методы Matches подобны методам Match, за исключением того, что они возвращают список успешных сопоставлений, полученных при итеративном вызове= Match (...), затем Match.NextMatch () и так далее. Коллекция включает только успешные сопоставления и завершается при первом неудачном сопоставлении.
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Replace 
+2
+Замещает все вхождения образца символов, определенного регулярным выражением с указанной строкой символов замещения.
+
+Список перегрузки
+Функция поддерживает десять вариантов синтаксиса:
+
+Первый вариант:
+Замещает все вхождения образца символа, определенного регулярным выражением, указанным в конструкторе Regex. Вызов делегата MatchEvaluator происходит при каждом сопоставлении для оценки замещения.
+
+[VB]
+Overloads Public Function Replace( _
+   ByVal input As String, _
+   ByVal evaluator As MatchEvaluator _
+) As String
+
+[VC#]
+public string Replace(
+   string input,
+   MatchEvaluator evaluator
+);
+
+[VC++]
+public: String* Replace(
+   String* input,
+   MatchEvaluator* evaluator
+);
+
+[JScript]
+public function Replace(
+   input : String,
+   evaluator : MatchEvaluator
+) : String;
+
+Второй вариант:
+Замещает все вхождения указанного образца регулярного выражения со строкой замещения, начиная с первого символа во входной строке.
+
+[VB]
+Overloads Public Function Replace( _
+   ByVal input As String, _
+   ByVal replacement As String _
+) As String
+
+[VC#]
+public string Replace(
+   string input,
+   string replacement
+);
+
+[VC++]
+public: String* Replace(
+   String* input,
+   String* replacement
+);
+
+[JScript]
+public function Replace(
+   input : String,
+   replacement : String
+) : String;
+
+Третий вариант:
+Замещает указанное количество вхождений образца, определенного регулярным выражением, указанного в конструкторе Regex со строкой замещения, начиная с первого символа во входной строке. Вызов делегата MatchEvaluator происходит при каждом сопоставлении для оценки замещения.
+
+[VB]
+Overloads Public Function Replace( _
+   ByVal input As String, _
+   ByVal evaluator As MatchEvaluator, _
+   ByVal count As Integer _
+) As String
+
+[VC#]
+public string Replace(
+   string input,
+   MatchEvaluator evaluator,
+   int count
+);
+
+[VC++]
+public: String* Replace(
+   String* input,
+   MatchEvaluator* evaluator,
+   int count
+);
+
+[JScript]
+public function Replace(
+   input : String,
+   evaluator : MatchEvaluator,
+   count : int
+) : String;
+
+Четвёртый вариант:
+Замещает указанное количество вхождений образца, определенного регулярным выражением, указанного в конструкторе Regex с указанной строкой замещения, начиная с первого символа во входной строке.
+
+[VB]
+Overloads Public Function Replace( _
+   ByVal input As String, _
+   ByVal replacement As String, _
+   ByVal count As Integer _
+) As String
+
+[VC#]
+public string Replace(
+   string input,
+   string replacement,
+   int count
+);
+
+[VC++]
+public: String* Replace(
+   String* input,
+   String* replacement,
+   int count
+);
+
+[JScript]
+public function Replace(
+   input : String,
+   replacement : String,
+   count : int
+) : String;
+
+Пятый вариант:
+Замещает все вхождения образца символов, определенного регулярным выражением со строкой символов замещения, начиная с первого символа. Вызов делегата MatchEvaluator происходит при каждом сопоставлении для оценки замещения.
+
+[VB]
+Overloads Public Shared Function Replace( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal evaluator As MatchEvaluator _
+) As String
+
+[VC#]
+public static string Replace(
+   string input,
+   string pattern,
+   MatchEvaluator evaluator
+);
+
+[VC++]
+public: static String* Replace(
+   String* input,
+   String* pattern,
+   MatchEvaluator* evaluator
+);
+
+[JScript]
+public static function Replace(
+   input : String,
+   pattern : String,
+   evaluator : MatchEvaluator
+) : String;
+
+Шестой вариант:
+Замещает все вхождения сопоставлений, определенных регулярным выражением со строкой замещения, начиная с первого символа во входной строке.
+
+[VB]
+Overloads Public Shared Function Replace( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal replacement As String _
+) As String
+
+[VC#]
+public static string Replace(
+   string input,
+   string pattern,
+   string replacement
+);
+
+[VC++]
+public: static String* Replace(
+   String* input,
+   String* pattern,
+   String* replacement
+);
+
+[JScript]
+public static function Replace(
+   input : String,
+   pattern : String,
+   replacement : String
+) : String;
+
+Седьмой вариант:
+Замещает указанное количество вхождений образца, указанного в конструкторе Regex со строкой замещения, начиная с указанной позиции символа во входной строке. Вызов делегата MatchEvaluator происходит при каждом сопоставлении для оценки замещения.
+
+[VB]
+Overloads Public Function Replace( _
+   ByVal input As String, _
+   ByVal evaluator As MatchEvaluator, _
+   ByVal count As Integer, _
+   ByVal startat As Integer _
+) As String
+
+[VC#]
+public string Replace(
+   string input,
+   MatchEvaluator evaluator,
+   int count,
+   int startat
+);
+
+[VC++]
+public: String* Replace(
+   String* input,
+   MatchEvaluator* evaluator,
+   int count,
+   int startat
+);
+
+[JScript]
+public function Replace(
+   input : String,
+   evaluator : MatchEvaluator,
+   count : int,
+   startat : int
+) : String;
+
+Восьмой вариант:
+Замещает указанное количество вхождений образца во входной строке, определенной регулярным выражением, указанным в конструкторе Regex с указанной строкой замещения, начиная с указанной позиции символа во входной строке.
+
+[VB]
+Overloads Public Function Replace( _
+   ByVal input As String, _
+   ByVal replacement As String, _
+   ByVal count As Integer, _
+   ByVal startat As Integer _
+) As String
+
+[VC#]
+public string Replace(
+   string input,
+   string replacement,
+   int count,
+   int startat
+);
+
+[VC++]
+public: String* Replace(
+   String* input,
+   String* replacement,
+   int count,
+   int startat
+);
+
+[JScript]
+public function Replace(
+   input : String,
+   replacement : String,
+   count : int,
+   startat : int
+) : String;
+
+Девятый вариант:
+Замещает все вхождения образца символов, определенного указанным регулярным выражением со строкой символов замещения, начиная с первого символа. Имеется возможность указать параметры для изменения поведения сопоставления и вызова делегата MatchEvaluator при каждом сопоставлении, чтобы оценивать замещение.
+
+[VB]
+Overloads Public Shared Function Replace( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal evaluator As MatchEvaluator, _
+   ByVal options As RegexOptions _
+) As String
+
+[VC#]
+public static string Replace(
+   string input,
+   string pattern,
+   MatchEvaluator evaluator,
+   RegexOptions options
+);
+
+[VC++]
+public: static String* Replace(
+   String* input,
+   String* pattern,
+   MatchEvaluator* evaluator,
+   RegexOptions options
+);
+
+[JScript]
+public static function Replace(
+   input : String,
+   pattern : String,
+   evaluator : MatchEvaluator,
+   options : RegexOptions
+) : String;
+
+Десятый вариант:
+Замещает все вхождения образца, определенного указанным регулярным выражением с указанной строкой символов замещения, начиная с первого символа во входной строке. Допускается указать параметры для изменения поведения сопоставления.
+
+[VB]
+Overloads Public Shared Function Replace( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal replacement As String, _
+   ByVal options As RegexOptions _
+) As String
+
+[VC#]
+public static string Replace(
+   string input,
+   string pattern,
+   string replacement,
+   RegexOptions options
+);
+
+[VC++]
+public: static String* Replace(
+   String* input,
+   String* pattern,
+   String* replacement,
+   RegexOptions options
+);
+
+[JScript]
+public static function Replace(
+   input : String,
+   pattern : String,
+   replacement : String,
+   options : RegexOptions
+) : String;
+
+Параметры
+	input -- Строка для изменения. 
+	replacement -- Замещаемая строка. 
+	evaluator -- MatchEvaluator оценивает каждый этап замещения. 
+	count -- Максимальное количество случаев замещения. 
+	pattern -- Образец регулярного выражения для сопоставления. 
+	startat -- Позиция символа во входной строке, откуда начнется поиск. 
+	options -- Поразрядная комбинация OR значений перечисления RegexOption. 
+
+Возвращаемое значение
+	Измененная строка символов.
+
+Примечания
+	Тип MatchEvaluator является делегатом, который берет отдельное Match в качестве входных данных и возвращает строку. Это объявляется следующим образом:
+
+	public delegate String RegexMatchEvaluator(Match match);
+	Во время замещения делегат вызывается единожды для каждого сопоставления.
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Split 
+2
+Разбивает входную строку на массив подстрок на позициях, определенных сопоставлением регулярного выражения.
+
+Список перегрузки
+	Функция имеет пять вариантов синтаксиса.
+
+Первый вариант:
+Разбивает указанную входную строку в местах, определенных регулярным выражением, указанным в конструкторе Regex.
+
+[VB]
+Overloads Public Function Split( _
+   ByVal input As String _
+) As String()
+
+[VC#]
+public string[] Split(
+   string input
+);
+
+[VC++]
+public: String* Split(
+   String* input
+)  __gc[];
+
+[JScript]
+public function Split(
+   input : String
+) : String[];
+
+Второй вариант:
+Разбивает указанную входную строку указанное максимальное количество раз в местах, определенных регулярным выражением, указанным в конструкторе Regex.
+
+[VB]
+Overloads Public Function Split( _
+   ByVal input As String, _
+   ByVal count As Integer _
+) As String()
+
+[VC#]
+public string[] Split(
+   string input,
+   int count
+);
+
+[VC++]
+public: String* Split(
+   String* input,
+   int count
+)  __gc[];
+
+[JScript]
+public function Split(
+   input : String,
+   count : int
+) : String[];
+
+Третий вариант:
+Разбивает входную строку в местах, определенных образцом регулярного выражения.
+
+[VB]
+Overloads Public Shared Function Split( _
+   ByVal input As String, _
+   ByVal pattern As String _
+) As String()
+
+[VC#]
+public static string[] Split(
+   string input,
+   string pattern
+);
+
+[VC++]
+public: static String* Split(
+   String* input,
+   String* pattern
+)  __gc[];
+
+[JScript]
+public static function Split(
+   input : String,
+   pattern : String
+) : String[];
+
+Четвёртый вариант:
+Разбивает указанную входную строку указанное максимальное количество раз в местах, определенных регулярным выражением, указанным в конструкторе Regex, начиная с указанной позиции символа во входной строке.
+
+[VB]
+Overloads Public Function Split( _
+   ByVal input As String, _
+   ByVal count As Integer, _
+   ByVal startat As Integer _
+) As String()
+
+[VC#]
+public string[] Split(
+   string input,
+   int count,
+   int startat
+);
+
+[VC++]
+public: String* Split(
+   String* input,
+   int count,
+   int startat
+)  __gc[];
+
+[JScript]
+public function Split(
+   input : String,
+   count : int,
+   startat : int
+) : String[];
+
+Пятый вариант:
+Разбивает входную строку в местах, определенных указанным образцом регулярного выражения. Допускается указать параметры для изменения поведения сопоставления.
+
+[VB]
+Overloads Public Shared Function Split( _
+   ByVal input As String, _
+   ByVal pattern As String, _
+   ByVal options As RegexOptions _
+) As String()
+
+[VC#]
+public static string[] Split(
+   string input,
+   string pattern,
+   RegexOptions options
+);
+
+[VC++]
+public: static String* Split(
+   String* input,
+   String* pattern,
+   RegexOptions options
+)  __gc[];
+
+[JScript]
+public static function Split(
+   input : String,
+   pattern : String,
+   options : RegexOptions
+) : String[];
+
+Параметры
+	input -- Разбиваемая строка. 
+	count -- Максимальное число возвращаемых элементов массива. 
+	pattern -- Регулярное выражение для сопоставления. 
+	startat -- Позиция символа во входной строке, откуда начнется поиск. 
+	options -- Поразрядная комбинация OR значений перечисления RegexOption. 
+
+Возвращаемое значение
+	Массив строк.
+
+Примечания
+	Методы Regex.Split схожи с методом Split за исключением того, что данный метод разбивает строку, используя разделитель, определяемый регулярным выражением, а не набор знаков. Если указан count, строка разбивается максимум на count строк (последняя строка содержит неразбитый остаток строки); нулевое значение count обеспечивает стандартное поведение разбивки столько раз, сколько это возможно. Если указан startat, поиск первого разделителя происходит, начиная с указанной точки (этим можно воспользоваться, например, для пропуска предшествующих пробелов).
+
+	Если группы захвата применяются в выражении Regex.Split, они включаются в результирующий массив строк. Следующий пример выдает элементы массива «one», «-», «two», «-», «banana».
+
+Regex r = new Regex("(-)"); // Split on hyphens.
+string[] s = r.Split("one-two-banana");
+
+	Если регулярное выражение сопоставимо с пустой строкой (например, x*), Split разобьет строку на массив строк, состоящих из одного символа, потому что разделитель пустой строки можно найти в любом месте.Статические методы Split эквивалентны созданию объекта Regex с указанным образцом регулярного выражения с последующим вызовом метода экземпляра Split. Статические методы нужны для того, чтобы предоставить изолированное, отдельное использование регулярного выражения без явного создания объекта Regex.
+
+<end node> 5P9i0s8y19Z
+dt=Text
+<node>
+Unescape
+2
+Переключает обратно символы переключения режима во входной строке.
+
+Параметры
+	str -- Входная строка, содержащая текст для преобразования. 
+Возвращаемое значение
+	Строка символов с символами переключения режима, преобразованными обратно в состояние до переключения.
+
+Примечания
+	Например, Unescape замещает\x61 на a, а \n на символ новой строки (ASCII 10). Обратное переключение изменяет преобразования, сделанные Escape, на противоположные. (Конечно, Escape не в состоянии совершенно изменить Unescape на противоположное, потому что не может проследить в измененной обратно строке, какие символы до этого были переключены.)
+
+Примеры описания:
+
+[VB]
+Public Shared Function Unescape( _
+   ByVal str As String _
+) As String
+
+[VC#]
+public static string Unescape(
+   string str
+);
+
+[VC++]
+public: static String* Unescape(
+   String* str
+);
+
+[JScript]
+public static function Unescape(
+   str : String
+) : String;
 
 <end node> 5P9i0s8y19Z
